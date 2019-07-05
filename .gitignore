@@ -1,0 +1,27 @@
+### macOS
+.DS_Store
+
+### Kitchen
+.kitchen/
+.kitchen.local.yml
+terraform-gcp/Gemfile.lock
+
+### JetBrains
+.idea/
+
+### Packer
+packer_cache/
+*.box
+
+### Vagrant
+.vagrant/
+*.log
+
+### Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+backend*.tf
+backends/
+terraform-aws/

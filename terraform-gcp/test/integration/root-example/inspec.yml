@@ -1,0 +1,26 @@
+---
+name: root-example
+
+depends:
+  - name: inspec-gcp
+    git: https://github.com/inspec/inspec-gcp.git
+    tag: v0.10.0
+#supports:
+#  - platform: gcp
+
+attributes:
+  - name: input_gcp_project
+    required: true
+    type: string
+
+  - name: input_tfe_instance_zone
+    required: true
+    type: string
+
+  - name: input_tfe_instance_name
+    required: true
+    type: string
+
+  - name: output_tfe_instance_public_ip
+    required: true
+    type: string

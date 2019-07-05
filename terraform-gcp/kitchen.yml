@@ -1,0 +1,43 @@
+---
+driver:
+  name: terraform
+
+  variables:
+    gcp_project: teddy-testing
+    tfe_instance_zone: us-east4-a
+    tfe_instance_name: tfe
+
+provisioner:
+  name: terraform
+
+verifier:
+  name: terraform
+
+platforms:
+  - name: terraform
+
+suites:
+  - name: root-example
+
+    driver:
+      root_module_directory: examples/root-example
+
+    verifier:
+      systems:
+        - name: inspec-gcp
+          backend: gcp
+          transport: gcp://
+          controls:
+            - gcp_compute_instance_exists
+
+        - name: local
+          backend: local
+          controls:
+            - tfe_ports_reachable
+
+#        - name: remote
+#            backend: remote
+#            controls:
+#              - selinux_permissive
+#              - iptables_running
+#              - docker_installed
