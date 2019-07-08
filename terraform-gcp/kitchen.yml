@@ -26,7 +26,7 @@ suites:
       systems:
         - name: inspec-gcp
           backend: gcp
-          transport: gcp://
+          #transport: gcp://
           controls:
             - gcp_compute_instance_exists
 
