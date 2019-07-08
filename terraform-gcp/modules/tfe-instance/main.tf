@@ -44,10 +44,15 @@ resource "google_compute_instance" "tfe" {
 # Configure GCP Firewall Rules
 # ---------------------------------------------------------------------------------------------------------------------
 
+locals {
+  default_network = "https://www.googleapis.com/compute/v1/projects/${var.gcp_project}/global/networks/default"
+}
+
 resource "google_compute_firewall" "tfe_ingress" {
   name = "${google_compute_instance.tfe.name}-ingress"
 
-  network = google_compute_instance.tfe.network_interface[0].network
+  # Workaround for https://github.com/terraform-providers/terraform-provider-google/issues/3987
+  network = var.tfe_instance_network == "default" ? local.default_network : google_compute_instance.tfe.network_interface.0.network
 
   direction   = "INGRESS"
   target_tags = google_compute_instance.tfe.tags
