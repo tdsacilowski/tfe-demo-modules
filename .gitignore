@@ -4,7 +4,6 @@
 ### Kitchen
 .kitchen/
 .kitchen.local.yml
-terraform-gcp/Gemfile.lock
 
 ### JetBrains
 .idea/
