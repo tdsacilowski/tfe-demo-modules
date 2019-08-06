@@ -13,7 +13,10 @@ packer_cache/
 *.box
 
 ### Vagrant
+vagrant/
 .vagrant/
+
+### Logs
 *.log
 
 ### Terraform

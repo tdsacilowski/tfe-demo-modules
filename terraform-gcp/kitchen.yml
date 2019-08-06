@@ -20,22 +20,21 @@ suites:
   - name: root-example
 
     driver:
-      root_module_directory: examples/root-example
+      root_module_directory: examples/root-example/
 
     verifier:
       systems:
-        - name: inspec-gcp
+        - name: root-example gcp
           backend: gcp
-          #transport: gcp://
           controls:
             - gcp_compute_instance_exists
 
-        - name: local
+        - name: root-example local
           backend: local
           controls:
             - tfe_ports_reachable
 
-#        - name: remote
+#        - name: root-example remote
 #            backend: remote
 #            controls:
 #              - selinux_permissive
