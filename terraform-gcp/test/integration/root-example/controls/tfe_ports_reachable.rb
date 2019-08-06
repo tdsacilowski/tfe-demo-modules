@@ -1,4 +1,4 @@
-control 'is_host_reachable' do
+control 'tfe_ports_reachable' do
   describe host(attribute('output_tfe_instance_public_ip'),
                 port: 80,
                 protocol: 'tcp') do

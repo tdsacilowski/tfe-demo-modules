@@ -33,17 +33,25 @@ Here are the minimum setup steps if you're starting with a base Ubuntu box (e.g.
 sudo apt update && sudo apt -y upgrade
 
 # Install Terraform
+export TF_VERSION=0.12.5
 sudo apt -y install unzip && \
-  curl -O https://releases.hashicorp.com/terraform/0.12.3/terraform_0.12.3_linux_amd64.zip && \
-  sudo unzip terraform_0.12.3_linux_amd64.zip -d /usr/local/bin/
+  curl -O https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip && \
+  sudo unzip terraform_${TF_VERSION}_linux_amd64.zip -d /usr/local/bin/
 
 # Install rbenv & ruby-build plugin
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+# Install prerequisites
+sudo apt -y install git curl libssl-dev libreadline-dev zlib1g-dev autoconf bison build-essential libyaml-dev libreadline-dev libncurses5-dev libffi-dev libgdbm-dev
+
+# Install libsodium.so library
+sudo apt -y install libsodium-dev
+
+# Install rbenv and ruby-build
+sudo apt -y install git
+curl -sL https://github.com/rbenv/rbenv-installer/raw/master/bin/rbenv-installer | bash -
+
 echo -e '\nexport PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo -e 'eval "$(rbenv init -)"' >> ~/.bashrc
-. ~/.bashrc
-mkdir -p "$(rbenv root)"/plugins
-git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+source ~/.bashrc
 
 # Install Ruby
 rbenv install 2.6.3
@@ -54,9 +62,9 @@ gem install bundler
 
 # Install Google SDK
 echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-apt-get install apt-transport-https ca-certificates
+sudo apt -y install apt-transport-https ca-certificates
 curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key --keyring /usr/share/keyrings/cloud.google.gpg add -
-sudo apt-get update && sudo apt-get install google-cloud-sdk
+sudo apt update && sudo apt -y install google-cloud-sdk
 ```
 
 

@@ -1,5 +1,5 @@
 source "https://rubygems.org/" do
-  gem 'inspec', '~> 3.0', '>= 3.0.25'
+  # Pin to InSpec 3 for inspec-gcp
+  gem 'inspec', '~> 3.0'
   gem "kitchen-terraform", "~> 5.1"
-  # gem "kitchen-terraform", "~> 4.0"
 end
